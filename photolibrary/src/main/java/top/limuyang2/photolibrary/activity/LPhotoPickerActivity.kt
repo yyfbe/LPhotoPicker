@@ -13,9 +13,7 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import top.limuyang2.photolibrary.LPhotoHelper
 import top.limuyang2.photolibrary.LPhotoHelper.Companion.EXTRA_COLUMNS_NUMBER
 import top.limuyang2.photolibrary.LPhotoHelper.Companion.EXTRA_IS_SINGLE_CHOOSE
@@ -190,9 +188,7 @@ class LPhotoPickerActivity : LBaseActivity<LPpActivityPhotoPickerBinding>() {
 
     override fun initData() {
         lifecycleScope.launch {
-            val list = withContext(Dispatchers.IO) {
-                findPhoto(intent.getLongExtra("bucketId", -1L), showTypeArray)
-            }
+            val list = findPhoto(intent.getLongExtra("bucketId", -1L), showTypeArray)
 
             adapter.setData(list)
             viewBinding.pickerRecycler.scrollToPosition(adapter.itemCount - 1)

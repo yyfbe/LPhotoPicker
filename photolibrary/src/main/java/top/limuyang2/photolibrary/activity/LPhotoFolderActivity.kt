@@ -6,13 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.MediaFormat.MIMETYPE_IMAGE_ANDROID_HEIC
 import android.os.Bundle
 import android.util.TypedValue
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import top.limuyang2.photolibrary.LPhotoHelper.Companion.EXTRA_LAST_OPENED_ALBUM
 import top.limuyang2.photolibrary.LPhotoHelper.Companion.EXTRA_TYPE
 import top.limuyang2.photolibrary.R
@@ -107,9 +104,7 @@ class LPhotoFolderActivity : LBaseActivity<LPpActivityFolderBinding>() {
 
     override fun initData() {
         lifecycleScope.launch {
-            val list = withContext(Dispatchers.IO) {
-                findFolder(this@LPhotoFolderActivity, showTypeArray)
-            }
+            val list = findFolder(this@LPhotoFolderActivity, showTypeArray)
             mFolderAdapter.setData(list)
         }
     }

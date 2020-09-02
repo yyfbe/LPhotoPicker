@@ -93,8 +93,8 @@ class LPhotoHelper internal constructor(private val intent: Intent) {
         /**
          * 当前已选中的图片路径集合，可以传 null
          */
-        fun selectedPhotos(selectedPhotos: java.util.ArrayList<String>?): Builder {
-            mIntent.putStringArrayListExtra(EXTRA_SELECTED_PHOTOS, selectedPhotos)
+        fun selectedPhotos(selectedPhotos: java.util.ArrayList<Uri>?): Builder {
+            mIntent.putParcelableArrayListExtra(EXTRA_SELECTED_PHOTOS, selectedPhotos)
             return this
         }
 
